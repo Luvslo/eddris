@@ -1,0 +1,47 @@
+version: '3'
+
+# Named volumes
+volumes:
+
+  # MySQL Data
+  eddris-mysql-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  mysql:
+    image: mysql:5.7
+    container_name: eddris-mysql
+    volumes:
+      - eddris-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=eddris
+      - MYSQL_DATABASE=eddris
+      - MYSQL_USER=eddris
+      - MYSQL_PASSWORD=eddris
+
+  # PHP (with Nginx)
+  app:
+    image: ambientum/php:7.3-nginx
+    container_name: eddris-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8080:8080"
+      - "8083:8083"
+    links:
+      - mysql
+      - cache
+
+  # Laravel Queues
+  queue:
+    image: ambientum/php:7.3
+    container_name: eddris-queue
+    command: php artisan queue:listen
+    volumes:
+      - .:/var/www/app
+    links:
+      - mysql
+      - cache
