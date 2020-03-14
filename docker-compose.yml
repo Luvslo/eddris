@@ -33,7 +33,6 @@ services:
       - "8083:8083"
     links:
       - mysql
-      - cache
 
   # Laravel Queues
   queue:
@@ -44,4 +43,3 @@ services:
       - .:/var/www/app
     links:
       - mysql
-      - cache
