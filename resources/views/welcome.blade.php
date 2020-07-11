@@ -12,12 +12,17 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: black;
-                color: red;
+                background-color: var(--main-bg-color);
+                color: var(--main-text-color);
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+            }
+
+            :root {
+                --main-text-color: red;
+                --main-bg-color: black;
             }
 
             .full-height {
@@ -49,7 +54,7 @@
             }
 
             .links > a {
-                color: red;
+                color: var(--main-text-color);
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;

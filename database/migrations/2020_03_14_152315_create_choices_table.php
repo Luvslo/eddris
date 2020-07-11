@@ -4,12 +4,12 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePathsTable extends Migration
+class CreateChoicesTable extends Migration
 {
     public function up()
     {
-        Schema::create('paths', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('choices', function (Blueprint $table) {
+            $table->uuid('id');
             $table->string('name');
             $table->timestamps();
         });
